@@ -40,6 +40,7 @@ Devise.setup do |config|
   config.capturable_server = "https://myapp.janraincapture.com"  
   config.capturable_client_id = "myclientid"
   config.capturable_client_secret = "myclientsecret"
+  config.capturable_redirect_uri = "http://www.mydomain.com"
 end
 ```
 
@@ -103,15 +104,11 @@ The Janrain User Registration widget relies on settings that are 1) never used a
 // these settings will always be the same
 janrain.settings.capture.flowName = 'signIn';
 janrain.settings.capture.responseType = 'code';
-
-// these settings are never used but crashes the widget if not present
-janrain.settings.capture.redirectUri = 'http://stupidsettings.com';
 ```
 
-You can delete these settings from your embed code, as the gem will set them for you. Remember that you still need a `tokenUrl` setting with a whitelisted URL, even though this setting is never used either.
+You can delete these settings from your embed code, as the gem will set them for you. Remember that you still need a `tokenUrl` setting with a whitelisted URL.
 
 ## Changing defaults
-
 
 #### Overriding `set_capturable_params`
 

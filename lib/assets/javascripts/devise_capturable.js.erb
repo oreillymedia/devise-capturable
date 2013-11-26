@@ -34,9 +34,7 @@ function janrainCaptureWidgetOnLoad() {
   // these settings will always be the same
   janrain.settings.capture.flowName = 'signIn';
   janrain.settings.capture.responseType = 'code';
-  
-  // these settings are never used but crashes the widget if not present
-  janrain.settings.capture.redirectUri = 'http://stupidsettings.com';
+  janrain.settings.capture.redirectUri = '<%= Devise.capturable_redirect_uri %>';
   
   // go go widget go
   janrain.capture.ui.start();
