@@ -9,7 +9,10 @@ describe 'View Helpers' do
     end
     test = Testing.new
     link = test.link_to_capturable("Login")
-    link.should == '<a class="capture_modal_open" href="#" id="capture_signin_link">Login</a>'
+    link.should include "Login"
+    link.should include 'class="capture_modal_open"'
+    link.should include 'id="capture_signin_link"'
+    link.should include 'href="#"'
   end
 
 end
