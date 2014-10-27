@@ -7,6 +7,7 @@ end
 
 PARAMS = { :code => "abcdefghijklmn" }
 TOKEN = {"access_token" => "abcdefg", "stat" => "ok"}
+REFRESH_TOKEN = {"access_token" => "hijklmn", "stat" => "ok"}
 ENTITY = {"result" => { "uuid" => "1234", "email" => "some@email.com" }}
 
 describe 'Devise::Capturable' do
@@ -19,6 +20,7 @@ describe 'Devise::Capturable' do
     expect(@strategy).to receive(:mapping).and_return(@mapping)
     expect(@strategy).to receive(:params).at_least(:once).and_return(PARAMS)
     allow(Devise::Capturable::API).to receive(:token).and_return(TOKEN)
+    allow(Devise::Capturable::API).to receive(:refresh_token).and_return(REFRESH_TOKEN)
     allow(Devise::Capturable::API).to receive(:entity).and_return(ENTITY)
   end
 
@@ -75,7 +77,7 @@ describe 'Devise::Capturable' do
         expect(@user).to_not receive(:save!)
         expect(@strategy).to_not receive(:success!)
         expect(@strategy).to receive(:fail!).with(:capturable_user_missing)
-        expect(@strategy).to receive(:redirect!).with("/users/sign_up")
+        expect(@strategy).to receive(:redirect!).with("/users/sign_up?token=hijklmn")
         @strategy.authenticate!
       end
 
