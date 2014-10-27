@@ -1,6 +1,4 @@
-unless defined?(Devise)
-  require 'devise'
-end
+require 'devise'
 
 require 'devise_capturable/model'
 require 'devise_capturable/strategy'

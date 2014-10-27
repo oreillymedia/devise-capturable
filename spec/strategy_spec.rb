@@ -13,7 +13,7 @@ ENTITY = {"result" => { "uuid" => "1234", "email" => "some@email.com" }}
 describe 'Devise::Capturable' do
   
   before(:each) do
-    @strategy = Devise::Capturable::Strategies::Capturable.new
+    @strategy = Devise::Capturable::Strategies::Capturable.new(env={})
     @mapping = double(:mapping)
     @user = User.new
     expect(@mapping).to receive(:to).and_return(User)
