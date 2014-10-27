@@ -39,7 +39,7 @@ In your `config/initializers/devise.rb` initializer, add the following settings.
 
 ```ruby
 Devise.setup do |config|
-  config.capturable_server = "https://myapp.janraincapture.com"  
+  config.capturable_server = "https://myapp.janraincapture.com"
   config.capturable_client_id = "myclientid"
   config.capturable_client_secret = "myclientsecret"
   config.capturable_redirect_uri = "http://sample.com" # Optional, see below
@@ -96,7 +96,7 @@ The gem ships with a helper method to show a link that opens the widget. You wil
 
 #### Done!
 
-That's it! 
+That's it!
 
 By default Devise will now create a database record when the user logs in for the first time. On following logins, the user will just be logged in. The only property Devise will save in the user model is the `email` address provided by Capture. You can however change this (See "Changing Defaults")
 

@@ -11,7 +11,7 @@ REFRESH_TOKEN = {"access_token" => "hijklmn", "stat" => "ok"}
 ENTITY = {"result" => { "uuid" => "1234", "email" => "some@email.com" }}
 
 describe 'Devise::Capturable' do
-  
+
   before(:each) do
     @strategy = Devise::Capturable::Strategies::Capturable.new(env={})
     @mapping = double(:mapping)
@@ -25,7 +25,7 @@ describe 'Devise::Capturable' do
   end
 
   describe "if user exists" do
-  
+
     it "should sign in" do
       expect(User).to receive(:find_with_capturable_params).with(ENTITY["result"]).and_return(@user)
       expect(@user).to receive(:before_capturable_sign_in).with(ENTITY["result"], PARAMS)
@@ -35,9 +35,9 @@ describe 'Devise::Capturable' do
     end
 
   end
-    
+
   describe "if user does not exist" do
-    
+
     before(:each) do
       expect(User).to receive(:find_with_capturable_params).and_return(nil)
     end
@@ -56,7 +56,7 @@ describe 'Devise::Capturable' do
         expect(@strategy).to receive(:fail!).with(:capturable_user_error)
         @strategy.authenticate!
       end
-      
+
       it "should succeed if saved" do
         expect(@user).to receive(:save).and_return(true)
         expect(@strategy).to receive(:success!).with(@user)
@@ -98,7 +98,7 @@ describe 'Devise::Capturable' do
       end
 
     end
-              
+
   end
 
 end
