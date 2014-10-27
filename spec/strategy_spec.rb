@@ -51,14 +51,14 @@ describe 'Devise::Capturable' do
       end
 
       it "should fail if not saved" do
-        expect(@user).to receive(:save!).and_raise(Exception)
+        expect(@user).to receive(:save).and_return(false)
         expect(@strategy).to_not receive(:success!)
         expect(@strategy).to receive(:fail!).with(:capturable_user_error)
         @strategy.authenticate!
       end
       
       it "should succeed if saved" do
-        expect(@user).to receive(:save!).and_return(true)
+        expect(@user).to receive(:save).and_return(true)
         expect(@strategy).to receive(:success!).with(@user)
         expect(@strategy).to_not receive(:fail!)
         @strategy.authenticate!

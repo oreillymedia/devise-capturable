@@ -37,8 +37,11 @@ module Devise
             elsif Devise.capturable_auto_create_account
               user = klass.new
               user.before_capturable_create(entity["result"], params)
-              user.save!
-              success!(user)
+              if user.save
+                success!(user)
+              else
+                fail!(:capturable_user_error)
+              end
             
             # else redirect to a custom URL
             elsif Devise.capturable_redirect_if_no_user
@@ -57,9 +60,6 @@ module Devise
               fail!(:capturable_user_missing)
             end
 
-          rescue Exception => e
-            puts "Devise Capturable Error: #{e}"
-            fail!(:capturable_user_error)
           end
         end
         
