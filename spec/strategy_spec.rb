@@ -1,6 +1,4 @@
 require "spec_helper"
-require "active_support/all"
-require File.join(File.dirname(__FILE__), '..', 'lib', 'devise_capturable', 'strategy')
 
 class User
 end

@@ -1,5 +1,4 @@
 require "spec_helper"
-require File.join(File.dirname(__FILE__), '..', 'lib', 'devise_capturable', 'view_helpers')
 
 describe 'View Helpers' do
 

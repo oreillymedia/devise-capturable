@@ -1,5 +1,4 @@
 require "spec_helper"
-require File.join(File.dirname(__FILE__), '..', 'lib', 'devise_capturable', 'api')
 
 describe 'Devise::Capturable::API' do
 
