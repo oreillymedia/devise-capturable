@@ -8,7 +8,12 @@ describe 'View Helpers' do
     end
     test = Testing.new
     link = test.link_to_capturable("Login")
-    expect(link).to eq '<a href="#" class="capture_modal_open" id="capture_signin_link">Login</a>'
+    expect(link).to match(/^<a/)
+    expect(link).to match(/href="#"/)
+    expect(link).to match(/class="capture_modal_open"/)
+    expect(link).to match(/id="capture_signin_link"/)
+    expect(link).to match(/Login/)
+    expect(link).to match(/<\/a>$/)
   end
 
 end
