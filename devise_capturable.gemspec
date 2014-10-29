@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency("httparty")
   gem.add_development_dependency("devise")
+  gem.add_development_dependency("jquery-rails", "~> 3.1")
   gem.add_development_dependency("rspec", "~> 3.1")
   gem.add_development_dependency("rspec-rails", "~> 3.1")
   gem.add_development_dependency("rails", "~> 3.2.0")
