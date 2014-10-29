@@ -54,6 +54,9 @@ module Dummy
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Suggested by Devise
+    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   end
 end
 
