@@ -1,6 +1,4 @@
-unless defined?(Devise)
-  require 'devise'
-end
+require 'devise'
 
 require 'devise_capturable/model'
 require 'devise_capturable/strategy'
@@ -22,10 +20,10 @@ I18n.load_path.unshift File.join(File.dirname(__FILE__), *%w[devise_capturable l
 Devise.add_module(:capturable, :strategy => true, :controller => :sessions, :model => 'devise_capturable/model')
 
 module Devise
-	module Capturable
-  	module Rails
-  	  class Engine < ::Rails::Engine
-  	  end
-  	end
-	end
+  module Capturable
+    module Rails
+      class Engine < ::Rails::Engine
+      end
+    end
+  end
 end

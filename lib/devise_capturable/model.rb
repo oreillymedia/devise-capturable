@@ -1,5 +1,5 @@
 module Devise
-  
+
   module Models
 
     module Capturable
@@ -16,7 +16,7 @@ module Devise
         self.email = capture_data["email"]
       end
 
-      # This is called from strategy and *can* be used to update an existing user model if 
+      # This is called from strategy and *can* be used to update an existing user model if
       # the data changes on the janrain side. It defaults to doing nothing.
       def before_capturable_sign_in(capture_data, params)
       end
