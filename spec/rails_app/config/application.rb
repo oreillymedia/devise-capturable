@@ -57,6 +57,9 @@ module Dummy
 
     # Suggested by Devise
     config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+    # Silence warning about this new default
+    config.i18n.enforce_available_locales = true
   end
 end
 
