@@ -21,6 +21,16 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
 
+  config.capturable_server = ENV['JANRAIN_ENDPOINT_URL']
+  config.capturable_client_id = ENV['JANRAIN_CLIENT_ID']
+  config.capturable_client_secret = ENV['JANRAIN_CLIENT_SECRET']
+  config.capturable_redirect_uri = ENV['JANRAIN_REDIRECT_URI']
+  config.capturable_auto_create_account = true
+  config.capturable_redirect_if_no_user = "/users/sign_up"
+
+  config.http_authenticatable_on_xhr = false
+  config.navigational_formats = ["*/*", :html, :json]
+
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for

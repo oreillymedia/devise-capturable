@@ -1,0 +1,101 @@
+<script type="text/javascript">
+function janrainDefaultSettings() {
+  if (typeof window.janrain !== 'object') window.janrain = {};
+  window.janrain.settings = {
+    language: 'en',
+    actionText: ' ',
+    appUrl: '<%= ENV['JANRAIN_APP_URL'] %>',
+    tokenAction: 'event',
+    tokenUrl: '<%= ENV['JANRAIN_TOKEN_URL'] %>',
+    packages: ['login', 'capture'],
+    capture: {
+      appId: '<%= ENV['JANRAIN_APP_ID'] %>',
+      captureServer: '<%= ENV['JANRAIN_ENDPOINT_URL'] %>',
+      clientId: '<%= ENV['JANRAIN_CLIENT_ID'] %>',
+      flowVersion: 'HEAD',
+      keepProfileCookieAfterLogout: true,
+      modalCloseHtml: '<span class="janrain-icon-16 janrain-icon-ex2"></span>',
+      redirectUri: '<%= ENV['JANRAIN_REDIRECT_URI'] %>',
+      // TODO Federate isn't turned on yet ...
+      // federate: true,
+      // federateServer: '<%= ENV['JANRAIN_FEDERATE_SERVER'] %>',
+      // federateXdReceiver: '<%= ENV['JANRAIN_FEDERATE_XD_RECEIVER'] %>',
+      // federateLogoutUri: '<%= ENV['JANRAIN_FEDERATE_LOGOUT_URI'] %>',
+      // federateEnableSafari: true,
+      responseType: 'code',
+      setProfileCookie: true,
+      transactionTimeout: 10000,
+      stylesheets: ['//cdn.oreillystatic.com/members/css/janrain.min.css'],
+      mobileStylesheets: ['//cdn.oreillystatic.com/members/css/janrain-mobile.min.css'],
+    }
+  };
+};
+
+function janrainInitLoad() {
+  function isReady() { janrain.ready = true; };
+  if (document.addEventListener) {
+      document.addEventListener("DOMContentLoaded", isReady, false);
+  } else {
+      window.attachEvent('onload', isReady);
+  }
+  var e = document.createElement('script');
+  e.type = 'text/javascript';
+  e.id = 'janrainAuthWidget';
+  var url = document.location.protocol === 'https:' ? 'https://' : 'http://';
+  url += '<%= ENV['JANRAIN_WIDGET_HOST'] %>';
+  url += '<%= ENV['JANRAIN_WIDGET_PATH'] %>';
+  e.src = url;
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(e, s);
+};
+
+  function janrainCaptureWidgetOnLoad() {
+    janrain.settings.capture.flowName = 'signInEmbedded';
+    janrain.settings.capture.responseType = 'code';
+    janrain.capture.ui.start();
+
+    janrain.events.onCaptureLoginSuccess.addHandler(function(result) {
+      sendAuthorizationCodeToServer(result.authorizationCode);
+    });
+    janrain.events.onCaptureRegistrationSuccess.addHandler(function(result) {
+      sendAuthorizationCodeToServer(result.authorizationCode);
+    });
+    janrain.events.onCaptureSessionEnded.addHandler(function() {
+    });
+    janrain.events.onCaptureScreenShow.addHandler(function(result) {
+      if (result.screen == 'returnTraditional') {
+        var span = document.getElementById('traditionalWelcomeName');
+        var name = janrain.capture.ui.getReturnExperienceData('displayName');
+        if (span && name) {
+          span.innerHTML = "Hi " + name;
+        }
+      }
+    });
+  };
+
+  function sendAuthorizationCodeToServer(code) {
+    var params = {}
+    params['code'] = code;
+    $.ajax({
+      type: 'POST',
+      url: '/users/sign_in',
+      data: params,
+      success: function(results) {
+        if(results.access_token) {
+          janrain.capture.ui.createCaptureSession(results.access_token);
+          if(results.redirect_url) {
+            window.location.href = results.redirect_url;
+          } else {
+            displayError('Did not receive redirect back from server.');
+          }
+        } else {
+          displayError('Did not receive token back from server.');
+        }
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        displayError('An error occurred while logging in.');
+      }
+    });
+  }
+</script>
+<script src="//cdn.oreillystatic.com/members/js/widgets/login-widget.min.js" id="janrainCaptureScript"></script>
