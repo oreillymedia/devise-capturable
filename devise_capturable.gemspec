@@ -18,10 +18,15 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_runtime_dependency("httparty")
-  gem.add_development_dependency("devise")
+  gem.add_development_dependency("devise", "~> 3.3")
+  gem.add_development_dependency("jquery-rails", "~> 3.1")
   gem.add_development_dependency("rspec", "~> 3.1")
   gem.add_development_dependency("rspec-rails", "~> 3.1")
   gem.add_development_dependency("rails", "~> 3.2.0")
+  # i18n is brought in by Rails, but we need to ensure
+  # enforce_available_locales= is available to silence a deprecation
+  # warning.
+  gem.add_development_dependency("i18n", "~> 0.6.6")
   gem.add_development_dependency("capybara", "~> 2.4")
   gem.add_development_dependency("sqlite3")
 end
