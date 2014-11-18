@@ -1,4 +1,7 @@
-<% if display_logout? %>
+<%
+@resource_name  ||= Devise.mappings.keys[0].to_s
+
+if display_logout? @resource_name %>
   <script>
   function janrainCaptureWidgetOnLoad() {
     janrain.settings.capture.flowName = 'signIn';
@@ -6,7 +9,7 @@
     janrain.capture.ui.start();
 
     janrain.events.onCaptureSessionEnded.addHandler(function() {
-      window.location = '<%= admin_federate_logout_path %>';
+      window.location = "/<%= @resource_name %>/federate_logout";
     });
   };
   </script>
