@@ -6,10 +6,9 @@ describe "Devise::CapturableAuthenticatable", type: :feature do
     expect(page).to have_content "Index"
   end
 
-  it "required login for protected" do
+  it "requires login for protected pages", js: true do
     visit "/protected"
     expect(page).not_to have_content "Protected"
-    puts page.html
     within "h2" do
       expect(page).to have_content "Log in"
     end
