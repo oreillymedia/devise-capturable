@@ -9,7 +9,7 @@ if display_logout? @resource_name %>
     janrain.capture.ui.start();
 
     janrain.events.onCaptureSessionEnded.addHandler(function() {
-      window.location = "/<%= @resource_name %>/federate_logout";
+      window.location = '<%= federate_logout_path(@resource_name) %>';
     });
   };
   </script>
