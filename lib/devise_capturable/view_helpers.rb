@@ -5,7 +5,7 @@ end
 module Devise
   module Capturable
     module Helpers
-      
+
       include ActionView::Helpers::UrlHelper
 
       def link_to_capturable(link_text, options={})
