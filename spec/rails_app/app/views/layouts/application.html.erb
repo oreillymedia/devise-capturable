@@ -4,6 +4,23 @@
   <title>Dummy</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <script type="text/javascript">
+      window.widget_load_path = '<%= ENV['JANRAIN_WIDGET_LOAD_PATH'] %>';
+      jQuery(document).ready(function() {
+          if(window.janrain) {
+              window.janrain.settings['appUrl'] = '<%= ENV['JANRAIN_APP_URL'] %>';
+              window.janrain.settings.capture['appId'] = '<%= ENV['JANRAIN_APP_ID'] %>';
+              window.janrain.settings.capture['captureServer'] = '<%= ENV['JANRAIN_ENDPOINT_URL'] %>';
+              window.janrain.settings.capture['clientId'] = '<%= ENV['JANRAIN_CLIENT_ID'] %>';
+              window.janrain.settings.capture['federateServer'] = '<%= ENV['JANRAIN_FEDERATE_SERVER'] %>';
+              window.janrain.settings.capture['federateXdReceiver'] = '<%= user_federate_xd_receiver_url %>';
+              window.janrain.settings.capture['federateLogoutUri'] = '<%= user_federate_logout_url %>';
+              window.janrain.settings.capture['redirectUri'] = '<%= ENV['JANRAIN_REDIRECT_URI'] %>';
+              window.janrain.settings.capture['stylesheets'] = ['//cdn.oreillystatic.com/members/css/janrain.min.css'];
+              window.janrain.settings.capture['mobileStylesheets'] = ['//cdn.oreillystatic.com/members/css/janrain-mobile.min.css'];
+          }
+      });
+  </script>
   <%= csrf_meta_tags %>
 </head>
 <body>
