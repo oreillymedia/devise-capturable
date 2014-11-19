@@ -1,7 +1,12 @@
 <%
-@resource_name  ||= Devise.mappings.keys[0].to_s
+  # Get the Devise model's name to render routes accordingly
+  # (e.g., user_federate_logout_path vs. admin_federate_logout_path).
+  # This is required to access the resource name on any non-Devise
+  # view.
+  @resource_name  ||= Devise.mappings.keys[0].to_s
+%>
 
-if display_logout? @resource_name %>
+<% if display_logout? @resource_name %>
   <script>
   function janrainCaptureWidgetOnLoad() {
     janrain.settings.capture.flowName = 'signIn';
