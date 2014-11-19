@@ -2,12 +2,12 @@ require 'httparty'
 
 module Devise
   module Capturable
-    
+
     class API
 
       include HTTParty
       format :json
-      
+
       def self.token(code)
         post("#{Devise.capturable_server}/oauth/token", :query => {
           code: code,
@@ -27,7 +27,7 @@ module Devise
           client_secret: Devise.capturable_client_secret,
         })
       end
-    
+
       def self.entity(token)
         post("#{Devise.capturable_server}/entity", headers: { 'Authorization' => "OAuth #{token}" })
       end

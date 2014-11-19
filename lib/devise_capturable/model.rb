@@ -1,5 +1,5 @@
 module Devise
-  
+
   module Models
 
     module Capturable
@@ -17,7 +17,7 @@ module Devise
         self.email = capture_data["email"]
       end
 
-      # This is called from strategy and *can* be used to update an existing user model if 
+      # This is called from strategy and *can* be used to update an existing user model if
       # the data changes on the janrain side. It defaults to doing nothing.
       def before_capturable_sign_in(capture_data, params)
       end
@@ -25,7 +25,7 @@ module Devise
       module ClassMethods
 
         # This is called from strategy and is used to find a user when returning from janrain
-        # It defaults to find_by_uuid, but you can override this in your user model
+        # It defaults to find_by_email, but you can override this in your user model
         def find_with_capturable_params(capture_data)
           self.find_by_email(capture_data["email"])
         end

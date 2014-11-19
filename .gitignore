@@ -17,3 +17,5 @@ test/version_tmp
 tmp
 .DS_Store
 .ruby-version
+spec/rails_app/log/*.log
+spec/rails_app/db/*.sqlite3
