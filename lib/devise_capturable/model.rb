@@ -25,7 +25,7 @@ module Devise
       module ClassMethods
 
         # This is called from strategy and is used to find a user when returning from janrain
-        # It defaults to find_by_email, but you can override this in your user model
+        # It defaults to find_by_uuid, but you can override this in your user model
         def find_with_capturable_params(capture_data)
           self.find_by_email(capture_data["email"])
         end

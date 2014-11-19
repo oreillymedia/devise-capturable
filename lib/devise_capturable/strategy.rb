@@ -3,7 +3,7 @@ require 'devise_capturable/api'
 module Devise
   
   module Capturable
-    
+
     module Strategies
 
       class Capturable < ::Devise::Strategies::Base
@@ -31,6 +31,7 @@ module Devise
             # if the user exists, sign in
             if user
               user.before_capturable_sign_in(entity["result"], params)
+              user.access_token = token['access_token']
               success!(user)
 
             # else if we want to auto create users
@@ -38,6 +39,7 @@ module Devise
               user = klass.new
               user.before_capturable_create(entity["result"], params)
               if user.save
+                user.access_token = token['access_token']
                 success!(user)
               else
                 fail!(:capturable_user_error)
