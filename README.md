@@ -118,10 +118,6 @@ Devise::Capturable includes a logout partial containing just enough JavaScript t
 //= require devise_capturable
 ```
 
-#### Add Janrain CSS
-
-Now add the Janrain CSS to your asset pipeline. Simply copy `janrain.css` and `janrain-mobile.css` to `app/assets/stylesheets`.
-
 #### Add links
 
 The gem ships with a helper method to show a link that opens the widget. You will use this to show the login / registration form, but use the normal `destroy_user_session_path` helper to log out the user. This is because Devise, not Capture, is controlling the user cookie.
