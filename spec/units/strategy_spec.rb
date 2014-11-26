@@ -14,6 +14,7 @@ describe 'Devise::Capturable' do
     @strategy = Devise::Capturable::Strategies::Capturable.new(env={})
     @mapping = double(:mapping)
     @user = User.new
+    allow(@user).to receive(:janrain_access_token=)
     expect(@mapping).to receive(:to).and_return(User)
     expect(@strategy).to receive(:mapping).and_return(@mapping)
     expect(@strategy).to receive(:params).at_least(:once).and_return(PARAMS)

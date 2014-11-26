@@ -1,0 +1,20 @@
+<% if display_logout? %>
+  <script>
+  function janrainCaptureWidgetOnLoad() {
+    janrain.settings.capture.flowName = 'signIn';
+    janrain.settings.capture.responseType = 'code';
+    janrain.capture.ui.start();
+
+    janrain.events.onCaptureSessionEnded.addHandler(function() {
+      window.location = window.janrain.settings.capture['federateLogoutUri'];
+    });
+  };
+  </script>
+  <style>
+    #janrainCaptureWidget { display: none; }
+  </style>
+  <script src="//cdn.oreillystatic.com/members/js/widgets/login-widget.min.js"
+          id="janrainCaptureScript">
+  </script>
+  <a href="#" class="signOutLink capture_end_session">Sign Out</a>
+<% end %>

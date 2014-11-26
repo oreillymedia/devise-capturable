@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="https://members.oreilly.com/css/noscript.css">
+
+<noscript>
+  <div id="widget_status">
+    <h1>There was a problem loading the login page.</h1>
+    <p>Please enable JavaScript to sign in.</p>
+  </div>
+</noscript>
+
+<div id="widget_status" style="display:none">
+  <h1>There was a problem loading the login page.</h1>
+  <p>Please check your browser settings for these possible blockers, and try again once you've made any necessary changes. Feel free to email <a href="mailto:accounts@oreilly.com">accounts@oreilly.com</a> if you have questions.</p>
+  <h2>JavaScript</h2>
+  <p>If you are blocking JavaScript with a plugin like NoScript or Ghostery, you'll need to allow JavaScript from:</p>
+  <ul><li>oreilly.com</li>
+  <li>oreillystatic.com</li>
+  <li>cloudfront.net</li>
+  <li>rpxnow.com</li></ul>
+  <p>For the best experience across our sites please also enable these domains:</p>
+  <ul><li>janrainbackplane.com</li>
+  <li>janrainsso.com</li>
+  <li>umbel.com</li></ul>
+  <h2>Private browsing and local storage</h2>
+  <p>If you prefer to use incognito or private browsing, Chrome or Firefox will work. Our login requires local storage, and some browsers, particularly Safari, block it while private browsing.</p>
+</div>
+
+<div id="widget_loading" style="display:none">
+  <div class="loading_msg">Loading login...</div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var widget_status = document.getElementById('widget_status');
+    var widget_loading = document.getElementById('widget_loading');
+    var attemptsRemaining = 30;
+    var showWarningAt = attemptsRemaining - 10;
+    function checkForWidget() {
+      if (attemptsRemaining >= 0) {
+        attemptsRemaining--;
+        if (typeof window.widgetReady === 'undefined') {
+          if (attemptsRemaining <= showWarningAt) {
+            widget_loading.style.display = 'none';
+            widget_status.style.display = '';
+          } else {
+            widget_loading.style.display = '';
+          }
+          setTimeout(checkForWidget, 1000);
+        } else {
+          widget_loading.style.display = 'none';
+          widget_status.style.display = 'none';
+        }
+      } else {
+        widget_loading.style.display = 'none';
+        widget_status.style.display = '';
+      }
+    }
+    checkForWidget();
+  });
+</script>
+
+<div id="loading" style="display:none">
+  <div id="captureRetrievingUserDataBuiltIn" class="janrain-capture-ui capture-ui-content capture_screen_container"><div class="capture_retrieving">Please wait while we retrieve your user data.</div></div>
+</div>
