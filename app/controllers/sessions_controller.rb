@@ -14,7 +14,7 @@ class SessionsController < Devise::SessionsController
     flash[:notice] = 'Signed in successfully.'
     return render :json => {
                               :success => true,
-                              :access_token => resource.access_token,
+                              :access_token => resource.janrain_access_token,
                               :redirect_url => after_sign_in_path_for(resource)
                            }
   end

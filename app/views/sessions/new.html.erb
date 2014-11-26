@@ -32,6 +32,7 @@
   function sendAuthorizationCodeToServer(code) {
     var params = {}
     params['code'] = code;
+    params[ $('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content');
     $.ajax({
       type: 'POST',
       url: '<%= new_session_path(resource_name) %>',

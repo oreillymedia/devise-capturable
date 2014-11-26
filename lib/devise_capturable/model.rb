@@ -7,7 +7,7 @@ module Devise
       def self.included(base)
         base.class_eval do
           extend ClassMethods
-          attr_accessor :access_token
+          attr_accessor :janrain_access_token
         end
       end
 
