@@ -1,5 +1,6 @@
 <div id="login">
-<script type="text/javascript">
+<%= render 'capturable/login_ajax' %>
+<script type='text/javascript'>
   function janrainCaptureWidgetOnLoad() {
     janrain.settings.capture.flowName = 'signInEmbedded';
     janrain.settings.capture.responseType = 'code';
@@ -28,43 +29,7 @@
       window.widgetReady = true;
     });
   };
-
-  function sendAuthorizationCodeToServer(code) {
-    var params = {}
-    params['code'] = code;
-    params[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content');
-    $.ajax({
-      type: 'POST',
-      url: '<%= new_session_path(resource_name) %>',
-      data: params,
-      success: function(results) {
-        if(results.access_token) {
-          janrain.capture.ui.createCaptureSession(results.access_token);
-          if(results.redirect_url) {
-            window.location.href = results.redirect_url;
-          } else {
-            displayError('Did not receive redirect back from server.');
-          }
-        } else {
-          displayError('Did not receive token back from server.');
-        }
-      },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
-        displayError('An error occurred while logging in.');
-      }
-    });
-  }
-
-  function displayError(error) {
-    error = error || 'An error occurred while logging in.';
-    error += ' Please refresh the page and try again.';
-    var popup = document.getElementById("captureRetrievingUserDataBuiltIn").firstChild;
-    popup.innerHTML = error;
-    popup.style.backgroundImage = "url('//cdn.oreillystatic.com/members/images/warning.png')";
-    popup.style.fontWeight = "bold";
-  }
 </script>
-
 <%= render 'capturable/noscript' %>
 
 <script src="//cdn.oreillystatic.com/members/js/widgets/login-widget.min.js" id="janrainCaptureScript"></script>

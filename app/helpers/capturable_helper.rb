@@ -1,7 +1,7 @@
 module CapturableHelper
-  def display_logout?
+  def display_janrain_widget?
     [
-      ['sessions', 'sign_in'],
+      ['sessions', 'new'],
       ['passwords', 'reset']
     ].exclude? [params[:controller], params[:action]]
   end

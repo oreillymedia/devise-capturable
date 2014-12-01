@@ -11,11 +11,14 @@ class SessionsController < Devise::SessionsController
     resource ||= resource_or_scope
     sign_in(scope, resource) unless warden.user(scope) == resource
     flash[:notice] = 'Signed in successfully.'
-    return render :json => {
-                              :success => true,
-                              :access_token => resource.janrain_access_token,
-                              :redirect_url => after_sign_in_path_for(resource)
-                           }
+    return_values = {
+      :success => true,
+      :access_token => resource.janrain_access_token
+    }
+    unless params[:skip_redirect]
+      return_values.merge!(:redirect_url => after_sign_in_path_for(resource))
+    end
+    return render :json => return_values
   end
 
   def failure

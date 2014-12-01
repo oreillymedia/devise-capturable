@@ -1,0 +1,66 @@
+<% @resource_name ||= Devise.mappings.keys[0].to_s %>
+
+<% if !signed_in?(@resource_name) && display_janrain_widget? %>
+  <%= render 'capturable/login_ajax' %>
+  <script>
+  function janrainCaptureWidgetOnLoad() {
+    janrain.settings.capture.flowName = 'signIn';
+    janrain.settings.capture.responseType = 'code';
+    janrain.capture.ui.start();
+
+    janrain.events.onCaptureLoginSuccess.addHandler(function(result) {
+      janrain.capture.ui.modal.close();
+      $('#login').html($('#loading').html());
+      sendAuthorizationCodeToServer(result.authorizationCode, 'skip');
+    });
+    janrain.events.onCaptureRegistrationSuccess.addHandler(function(result) {
+      janrain.capture.ui.modal.close();
+      $('#login').html($('#loading').html());
+      sendAuthorizationCodeToServer(result.authorizationCode, 'skip');
+    });
+    janrain.events.onCaptureScreenShow.addHandler(function(result) {
+      if (result.screen == 'returnTraditional') {
+        var span = document.getElementById('traditionalWelcomeName');
+        var name = janrain.capture.ui.getReturnExperienceData('displayName');
+        if (span && name) {
+          span.innerHTML = "Hi " + name;
+        }
+      }
+    });
+    janrain.events.onCaptureRenderComplete.addHandler(function(result) {
+      window.widgetReady = true;
+    });
+    janrain.events.onCaptureSessionEnded.addHandler(function() {
+      window.location = window.janrain.settings.capture['federateLogoutUri'];
+    });
+  };
+  </script>
+  <style>
+    #janrainCaptureWidget { display: none; }
+  </style>
+  <script src="//cdn.oreillystatic.com/members/js/widgets/login-widget.min.js"
+          id="janrainCaptureScript">
+  </script>
+  <a href="#" id="capture_signin_link" class="signInLink capture_modal_open">Sign In/Sign Up</a>
+<% end %>
+
+<% if signed_in? @resource_name %>
+  <script>
+  function janrainCaptureWidgetOnLoad() {
+    janrain.settings.capture.flowName = 'signIn';
+    janrain.settings.capture.responseType = 'code';
+    janrain.capture.ui.start();
+
+    janrain.events.onCaptureSessionEnded.addHandler(function() {
+      window.location = window.janrain.settings.capture['federateLogoutUri'];
+    });
+  };
+  </script>
+  <style>
+    #janrainCaptureWidget { display: none; }
+  </style>
+  <script src="//cdn.oreillystatic.com/members/js/widgets/login-widget.min.js"
+          id="janrainCaptureScript">
+  </script>
+  <a href="#" class="signOutLink capture_end_session">Sign Out</a>
+<% end %>
