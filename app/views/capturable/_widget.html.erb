@@ -1,4 +1,4 @@
-<% @resource_name ||= Devise.mappings.keys[0].to_s %>
+<% @resource_name ||= devise_resource_name %>
 
 <% if !signed_in?(@resource_name) && display_janrain_widget? %>
   <%= render 'capturable/login_ajax' %>

@@ -1,3 +1,5 @@
+<% @resource_name ||= devise_resource_name %>
+
 <script type='text/javascript'>
   function sendAuthorizationCodeToServer(code, skipRedirect) {
     var params = {}
@@ -8,7 +10,7 @@
     }
     $.ajax({
       type: 'POST',
-      url: '<%= new_session_path(resource_name) %>',
+      url: '<%= new_session_path(@resource_name) %>',
       data: params,
       success: function(results) {
         if(results.access_token) {
