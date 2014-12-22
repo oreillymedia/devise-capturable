@@ -13,7 +13,9 @@
       url: '<%= new_session_path(@resource_name) %>',
       data: params,
       success: function(results) {
-        if(results.access_token) {
+        if(results.failure_message) {
+          displayMessage(results.failure_message);
+        } else if(results.access_token) {
           janrain.capture.ui.createCaptureSession(results.access_token);
           if(results.redirect_url) {
             window.location.href = results.redirect_url;
@@ -28,12 +30,17 @@
     });
   }
 
-  function displayError(error) {
-    error = error || 'An error occurred while logging in.';
-    error += ' Please refresh the page and try again.';
+  function displayMessage(message) {
+    message = message || 'Something happened.';
     var popup = document.getElementById("captureRetrievingUserDataBuiltIn").firstChild;
     popup.innerHTML = error;
     popup.style.backgroundImage = "url('//cdn.oreillystatic.com/members/images/warning.png')";
     popup.style.fontWeight = "bold";
+  }
+
+  function displayError(error) {
+    error = error || 'An error occurred while logging in.';
+    error += ' Please refresh the page and try again.';
+    displayMessage(error);
   }
 </script>
