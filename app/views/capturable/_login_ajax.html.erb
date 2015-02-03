@@ -32,10 +32,20 @@
 
   function displayMessage(message) {
     message = message || 'Something happened.';
+    message += ' <a href="#" id="janrain_modal_closebutton" ' +
+               'class="janrain_modal_closebutton" ' +
+               'style="position: absolute; cursor: pointer; ' +
+               'z-index: 1000;">' +
+               '<span class="janrain-icon-16 janrain-icon-ex2"></span></a>';
     var popup = document.getElementById("captureRetrievingUserDataBuiltIn").firstChild;
     popup.innerHTML = message;
     popup.style.backgroundImage = "url('//cdn.oreillystatic.com/members/images/warning.png')";
     popup.style.fontWeight = "bold";
+
+    document.getElementById('janrain_modal_closebutton').onclick = function() {
+      var popup = document.getElementById('captureRetrievingUserDataBuiltIn');
+      popup.style.display = 'none';
+    }
   }
 
   function displayError(error) {
