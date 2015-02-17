@@ -13,6 +13,9 @@ module Devise
   mattr_accessor :capturable_redirect_uri
   mattr_accessor :capturable_auto_create_account
   mattr_accessor :capturable_redirect_if_no_user
+  mattr_accessor :janrain_css_url
+  mattr_accessor :janrain_mobile_css_url
+  mattr_accessor :janrain_widget_url
 end
 
 Devise.capturable_auto_create_account = true

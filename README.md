@@ -237,6 +237,26 @@ janrain.events.onCaptureRegistrationSuccess.addHandler(function(result) {
 });
 ```
 
+#### Overriding URLs for the login widget and CSS
+
+To provide your own values for the Janrain login widget or associated
+CSS, set them in `config/initializers/devise.rb`:
+
+```ruby
+Devise.setup do |config|
+  # Other configuration ...
+  config.janrain_widget_url = '//mydomain.com/path/to/widget.js'
+  config.janrain_css_url = '//mydomain.com/path/to/style.css'
+  config.janrain_mobile_css_url = '//mydomain.com/path/to/style.css'
+end
+```
+
+`janrain_css_url` and `janrain_mobile_css_url` can accept multiple URLs;
+just separate them by a space within the same string. (For example,
+`'//mydomain.com/style1.css //mydomain.com/style2.css`). This makes it
+easy to set these as environment variables, then load them in your
+Devise initializer.
+
 ## Running the Tests
 
 * Install development and test dependencies with `bundle install`
