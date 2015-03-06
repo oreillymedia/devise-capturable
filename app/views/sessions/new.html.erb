@@ -1,36 +1,40 @@
 <div id="login">
-<%= render 'capturable/login_ajax' %>
-<script type='text/javascript'>
-  function janrainCaptureWidgetOnLoad() {
-    janrain.settings.capture.flowName = 'signInEmbedded';
-    janrain.settings.capture.responseType = 'code';
-    janrain.capture.ui.start();
+  <%= render 'capturable/login_ajax' %>
+  <script type='text/javascript'>
+      function janrainCaptureWidgetOnLoad() {
+          janrain.settings.capture.flowName = 'signInEmbedded';
+          janrain.settings.capture.responseType = 'code';
+          janrain.capture.ui.start();
 
-    janrain.events.onCaptureLoginSuccess.addHandler(function(result) {
-      $('#login').html($('#loading').html());
-      sendAuthorizationCodeToServer(result.authorizationCode);
-    });
-    janrain.events.onCaptureRegistrationSuccess.addHandler(function(result) {
-      $('#login').html($('#loading').html());
-      sendAuthorizationCodeToServer(result.authorizationCode);
-    });
-    janrain.events.onCaptureSessionEnded.addHandler(function() {
-    });
-    janrain.events.onCaptureScreenShow.addHandler(function(result) {
-      if (result.screen == 'returnTraditional') {
-        var span = document.getElementById('traditionalWelcomeName');
-        var name = janrain.capture.ui.getReturnExperienceData('displayName');
-        if (span && name) {
-          span.innerHTML = "Hi " + name;
-        }
+          janrain.events.onCaptureLoginSuccess.addHandler(function (result) {
+              $('#login').html($('#loading').html());
+              sendAuthorizationCodeToServer(result.authorizationCode);
+          });
+          janrain.events.onCaptureSessionFound.addHandler(function (result) {
+              sendAccessTokenToServer(result.accessToken);
+          });
+          janrain.events.onCaptureRegistrationSuccess.addHandler(function (result) {
+              $('#login').html($('#loading').html());
+              sendAuthorizationCodeToServer(result.authorizationCode);
+          });
+          janrain.events.onCaptureSessionEnded.addHandler(function () {
+          });
+          janrain.events.onCaptureScreenShow.addHandler(function (result) {
+              if (result.screen == 'returnTraditional') {
+                  var span = document.getElementById('traditionalWelcomeName');
+                  var name = janrain.capture.ui.getReturnExperienceData('displayName');
+                  if (span && name) {
+                      span.innerHTML = "Hi " + name;
+                  }
+              }
+          });
+          janrain.events.onCaptureRenderComplete.addHandler(function (result) {
+              window.widgetReady = true;
+          });
       }
-    });
-    janrain.events.onCaptureRenderComplete.addHandler(function(result) {
-      window.widgetReady = true;
-    });
-  };
-</script>
-<%= render 'capturable/noscript' %>
+      ;
+  </script>
+  <%= render 'capturable/noscript' %>
 
-<script src="<%= janrain_widget_url %>" id="janrainCaptureScript"></script>
+  <script src="<%= janrain_widget_url %>" id="janrainCaptureScript"></script>
 </div>

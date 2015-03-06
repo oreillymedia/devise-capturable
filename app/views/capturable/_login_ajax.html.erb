@@ -1,57 +1,67 @@
 <% @resource_name ||= devise_resource_name %>
 
 <script type='text/javascript'>
-  function sendAuthorizationCodeToServer(code, skipRedirect) {
-    var params = {}
-    params['code'] = code;
-    params[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content');
-    if (skipRedirect) {
-      params['skip_redirect'] = 'skip';
+    function sendAuthorizationCodeToServer(code, skipRedirect) {
+        var params = {}
+        params['code'] = code;
+        return sendCodeOrTokenToServer(params, skipRedirect);
     }
-    $.ajax({
-      type: 'POST',
-      url: '<%= new_session_path(@resource_name) %>',
-      data: params,
-      success: function(results) {
-        if(results.failure_message) {
-          displayMessage(results.failure_message);
-        } else if(results.access_token) {
-          janrain.capture.ui.createCaptureSession(results.access_token);
-          if(results.redirect_url) {
-            window.location.href = results.redirect_url;
-          }
-        } else {
-          displayError('Did not receive token back from server.');
+
+    function sendAccessTokenToServer(accessToken, skipRedirect) {
+        var params = {}
+        params['accessToken'] = accessToken;
+        return sendCodeOrTokenToServer(params, skipRedirect);
+    }
+
+    function sendCodeOrTokenToServer(params, skipRedirect) {
+        params[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content');
+        if (skipRedirect) {
+            params['skip_redirect'] = 'skip';
         }
-      },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
-        displayError('An error occurred while logging in.');
-      }
-    });
-  }
-
-  function displayMessage(message) {
-    message = message || 'Something happened.';
-    message += ' <a href="#" id="janrain_modal_closebutton" ' +
-               'class="janrain_modal_closebutton" ' +
-               'style="position: absolute; cursor: pointer; ' +
-               'z-index: 1000;">' +
-               '<span class="janrain-icon-16 janrain-icon-ex2"></span></a>';
-    var popup = document.getElementById("captureRetrievingUserDataBuiltIn").firstChild;
-    popup.innerHTML = message;
-    popup.style.backgroundImage = "url('//cdn.oreillystatic.com/members/images/warning.png')";
-    popup.style.fontWeight = "bold";
-
-    document.getElementById('janrain_modal_closebutton').onclick = function() {
-      var popup = document.getElementById('captureRetrievingUserDataBuiltIn');
-      popup.style.display = 'none';
-      return false;
+        $.ajax({
+            type: 'POST',
+            url: '<%= new_session_path(@resource_name) %>',
+            data: params,
+            success: function (results) {
+                if (results.failure_message) {
+                    displayMessage(results.failure_message);
+                } else if (results.access_token) {
+                    janrain.capture.ui.createCaptureSession(results.access_token);
+                    if (results.redirect_url) {
+                        window.location.href = results.redirect_url;
+                    }
+                } else {
+                    displayError('Did not receive token back from server.');
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                displayError('An error occurred while logging in.');
+            }
+        });
     }
-  }
 
-  function displayError(error) {
-    error = error || 'An error occurred while logging in.';
-    error += ' Please refresh the page and try again.';
-    displayMessage(error);
-  }
+    function displayMessage(message) {
+        message = message || 'Something happened.';
+        message += ' <a href="#" id="janrain_modal_closebutton" ' +
+        'class="janrain_modal_closebutton" ' +
+        'style="position: absolute; cursor: pointer; ' +
+        'z-index: 1000;">' +
+        '<span class="janrain-icon-16 janrain-icon-ex2"></span></a>';
+        var popup = document.getElementById("captureRetrievingUserDataBuiltIn").firstChild;
+        popup.innerHTML = message;
+        popup.style.backgroundImage = "url('//cdn.oreillystatic.com/members/images/warning.png')";
+        popup.style.fontWeight = "bold";
+
+        document.getElementById('janrain_modal_closebutton').onclick = function () {
+            var popup = document.getElementById('captureRetrievingUserDataBuiltIn');
+            popup.style.display = 'none';
+            return false;
+        }
+    }
+
+    function displayError(error) {
+        error = error || 'An error occurred while logging in.';
+        error += ' Please refresh the page and try again.';
+        displayMessage(error);
+    }
 </script>

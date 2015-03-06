@@ -18,9 +18,13 @@ module Devise
 
           begin
 
-            # get an access token from an OAUTH code
-            token = Devise::Capturable::API.token(params[:code])
-            fail!(:capturable_user_error) unless token['stat'] == 'ok'
+            if params[:accessToken]
+              token = {'access_token' => params[:accessToken]}
+            else
+              # get an access token from an OAUTH code
+              token = Devise::Capturable::API.token(params[:code])
+              fail!(:capturable_user_error) unless token['stat'] == 'ok'
+            end
 
             # get the user info form the access token
             entity = Devise::Capturable::API.entity(token['access_token'])
@@ -72,7 +76,7 @@ module Devise
         end
 
         def valid_params?
-          params[:code].present?
+          params[:code].present? || params[:accessToken].present?
         end
 
       end
