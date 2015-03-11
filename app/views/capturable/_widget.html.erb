@@ -33,6 +33,18 @@
     janrain.events.onCaptureSessionEnded.addHandler(function() {
       window.location = window.janrain.settings.capture['federateLogoutUri'];
     });
+
+    janrain.events.onCaptureBackplaneReady.addHandler(function(result) {
+      window.escSubscription = Backplane.subscribe(function(backplaneMessage) {
+        if (backplaneMessage.type == 'identity/login') {
+          _umbel.push({
+            'type': 'send',
+            'name': 'profile.backplane_12',
+            'value': backplaneMessage.payload.identities.entry.id
+          });
+        }
+      });
+    });
   };
   </script>
   <style>
@@ -53,6 +65,19 @@
     janrain.events.onCaptureSessionEnded.addHandler(function() {
       window.location = window.janrain.settings.capture['federateLogoutUri'];
     });
+
+    janrain.events.onCaptureBackplaneReady.addHandler(function(result) {
+      window.escSubscription = Backplane.subscribe(function(backplaneMessage) {
+        if (backplaneMessage.type == 'identity/login') {
+          _umbel.push({
+            'type': 'send',
+            'name': 'profile.backplane_12',
+            'value': backplaneMessage.payload.identities.entry.id
+          });
+        }
+      });
+    });
+
   };
   </script>
   <style>

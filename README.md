@@ -97,6 +97,14 @@ jQuery(document).ready(function() {
     window.janrain.settings.capture['redirectUri'] = '<%= ENV['JANRAIN_REDIRECT_URI'] %>';
     window.janrain.settings.capture['stylesheets'] = ['//cdn.oreillystatic.com/members/css/janrain.min.css'];
     window.janrain.settings.capture['mobileStylesheets'] = ['//cdn.oreillystatic.com/members/css/janrain-mobile.min.css'];
+    <% if ENV['BACKPLANE_BUS_NAME'].present? %>
+      // optional: If you're using Backplane functionality, add the bus name
+      // to your config, then check for and load it. If you're not using
+      // Backplane then you can omit these configurations.
+      window.janrain.settings.capture['backplane'] = true;
+      window.janrain.settings.capture['backplaneVersion'] = '1.2';
+      window.janrain.settings.capture['backplaneBusName'] = '<%= ENV['BACKPLANE_BUS_NAME'] %>';
+    <% end %>
   }
 });
 </script>

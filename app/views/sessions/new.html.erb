@@ -28,6 +28,17 @@
     janrain.events.onCaptureRenderComplete.addHandler(function(result) {
       window.widgetReady = true;
     });
+    janrain.events.onCaptureBackplaneReady.addHandler(function(result) {
+      window.escSubscription = Backplane.subscribe(function(backplaneMessage) {
+        if (backplaneMessage.type == 'identity/login') {
+          _umbel.push({
+            'type': 'send',
+            'name': 'profile.backplane_12',
+            'value': backplaneMessage.payload.identities.entry.id
+          });
+        }
+      });
+    });
   };
 </script>
 <%= render 'capturable/noscript' %>
