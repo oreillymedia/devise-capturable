@@ -1,0 +1,17 @@
+janrain.events.onCaptureBackplaneReady.addHandler(function(result) {
+  window.escSubscription = Backplane.subscribe(function(backplaneMessage) {
+    if (backplaneMessage.type == 'identity/login') {
+      if (typeof _umbel !== 'undefined') {
+        _umbel.push({
+          'type': 'send',
+          'name': 'profile.backplane_12',
+          'value': backplaneMessage.payload.identities.entry.id
+        });
+      } else {
+        if (console && console.log) {
+          console.log('Backplane event fired, but _umbel not defined');
+        }
+      }
+    }
+  });
+});

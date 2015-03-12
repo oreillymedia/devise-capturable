@@ -34,17 +34,7 @@
       window.location = window.janrain.settings.capture['federateLogoutUri'];
     });
 
-    janrain.events.onCaptureBackplaneReady.addHandler(function(result) {
-      window.escSubscription = Backplane.subscribe(function(backplaneMessage) {
-        if (backplaneMessage.type == 'identity/login') {
-          _umbel.push({
-            'type': 'send',
-            'name': 'profile.backplane_12',
-            'value': backplaneMessage.payload.identities.entry.id
-          });
-        }
-      });
-    });
+    <%= render partial: 'capturable/backplane', formats: [:js] %>
   };
   </script>
   <style>
@@ -54,7 +44,6 @@
   </script>
   <a href="#" id="capture_signin_link" class="signInLink capture_modal_open">Sign In/Sign Up</a>
 <% end %>
-
 <% if signed_in? @resource_name %>
   <script>
   function janrainCaptureWidgetOnLoad() {
@@ -66,18 +55,7 @@
       window.location = window.janrain.settings.capture['federateLogoutUri'];
     });
 
-    janrain.events.onCaptureBackplaneReady.addHandler(function(result) {
-      window.escSubscription = Backplane.subscribe(function(backplaneMessage) {
-        if (backplaneMessage.type == 'identity/login') {
-          _umbel.push({
-            'type': 'send',
-            'name': 'profile.backplane_12',
-            'value': backplaneMessage.payload.identities.entry.id
-          });
-        }
-      });
-    });
-
+    <%= render partial: 'capturable/backplane', formats: [:js] %>
   };
   </script>
   <style>
