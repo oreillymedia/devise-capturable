@@ -4,6 +4,8 @@
    function janrainCaptureWidgetOnLoad() {
      janrain.settings.capture.flowName = 'signInEmbedded';
      janrain.capture.ui.start();
+
+    <%= render partial: 'capturable/backplane', formats: [:js] %>
    };
 </script>
 <script id="janrainCaptureScript"
