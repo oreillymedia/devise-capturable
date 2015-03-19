@@ -9,14 +9,22 @@
     janrain.capture.ui.start();
 
     janrain.events.onCaptureLoginSuccess.addHandler(function(result) {
-      janrain.capture.ui.modal.close();
-      $('#login').html($('#loading').html());
-      sendAuthorizationCodeToServer(result.authorizationCode, 'skip');
+      if (result.authorizationCode){
+        janrain.capture.ui.modal.close();
+        $('#login').html($('#loading').html());
+        sendAuthorizationCodeToServer(result.authorizationCode, 'skip');
+      }else if (result.accessToken){
+        janrain.capture.ui.createCaptureSession(result.accessToken);
+      }
     });
     janrain.events.onCaptureRegistrationSuccess.addHandler(function(result) {
-      janrain.capture.ui.modal.close();
-      $('#login').html($('#loading').html());
-      sendAuthorizationCodeToServer(result.authorizationCode, 'skip');
+      if(result.authorizationCode){
+        janrain.capture.ui.modal.close();
+        $('#login').html($('#loading').html());
+        sendAuthorizationCodeToServer(result.authorizationCode, 'skip');
+      }else if(result.accessToken){
+        janrain.capture.ui.createCaptureSession(result.accessToken);
+      }
     });
     janrain.events.onCaptureScreenShow.addHandler(function(result) {
       if (result.screen == 'returnTraditional') {
