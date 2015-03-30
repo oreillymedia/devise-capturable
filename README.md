@@ -31,7 +31,8 @@ gem 'devise_capturable', :github => 'oreillymedia/devise-capturable', :branch =>
 
 We strongly recommend using [dotenv-rails](http://rubygems.org/gems/dotenv-rails) or a similar utility to load Janrain environment-specific configuration data. Include the following values:
 
-* JANRAIN_WIDGET_LOAD_PATH: The full URL for your app's signin widget, hosted by Janrain; for example, "d16s8pqtk4uodx.cloudfront.net/oreilly-dev/load.js"
+* JANRAIN_WIDGET_HTTPS_LOAD_URL: The full URL for your app's signin widget, as used on HTTPS-served pages; for example, https://rpxnow.com/load/oreilly-dev. Capturable will expect this value to be provided to client-side code as `window.widget_https_load_url`.
+* JANRAIN_WIDGET_HTTP_LOAD_URL: The full URL for your app's signin widget, as used on HTTP-served pages; for example, http://widget-cdn.rpxnow.com/load/oreilly-dev. Capturable will expect this value to be provided to client-side code as `window.widget_http_load_url`.
 * JANRAIN_APP_URL: The application URL for your Capture/Engage installation, hosted by Janrain; for example, https://oreilly-dev.rpxnow.com
 * JANRAIN_APP_ID: The application ID for your Capture installation, found in the Janrain Dashboard.
 * JANRAIN_ENDPOINT_URL: Your application's server for accessing the Janrain API; for example, https://oreilly.dev.janraincapture.com/
