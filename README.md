@@ -24,7 +24,7 @@ You will need to perform these steps to setup the gem.
 Inside your Gemfile, after including Devise:
 
 ```ruby
-gem 'devise_capturable', :github => 'oreillymedia/devise-capturable', :branch => 'extract-functionality-from-test-app'
+gem 'devise_capturable', :github => 'oreillymedia/devise-capturable', :branch => 'capturable-extended'
 ```
 
 #### Set up your ENV
