@@ -42,7 +42,9 @@
   </style>
   <script src="<%= janrain_widget_url %>" id="janrainCaptureScript">
   </script>
-  <a href="#" id="capture_signin_link" class="signInLink capture_modal_open">Sign In/Sign Up</a>
+  <a href="#" id="capture_signin_link" class="signInLink capture_modal_open">
+    <%= t '.sign_in_up' %>
+  </a>
 <% end %>
 <% if signed_in? @resource_name %>
   <script>
@@ -63,5 +65,7 @@
   </style>
   <script src="<%= janrain_widget_url %>" id="janrainCaptureScript">
   </script>
-  <a href="#" class="signOutLink capture_end_session">Sign Out</a>
+  <a href="#" class="signOutLink capture_end_session">
+    <%= t '.sign_out' %>
+  </a>
 <% end %>
