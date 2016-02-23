@@ -20,3 +20,8 @@ zh:
         <p>如果你使用incognito或无痕浏览，Chrome和Firefox浏览器没问题。我们的登录使用本地存储，一些特定浏览器比如Safari在无痕浏览时会拦截本地存储。</p>
       widget_loading: 装载登录页面......
       retrieve_user_data: 我们正在取得你的用户数据，请稍等。
+    login_ajax:
+      error: 登录过程中发生错误。
+      instructions: 请刷新页面重试。
+      no_token_received: 你收到服务器发回的标志了吗？
+      something_happened: 发生问题。

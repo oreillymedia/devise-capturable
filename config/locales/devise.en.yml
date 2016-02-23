@@ -22,3 +22,8 @@ en:
         and some browsers, particularly Safari, block it while private browsing.</p>
       widget_loading: Loading login...
       retrieve_user_data: Please wait while we retrieve your user data.
+    login_ajax:
+      error: An error occurred while logging in.
+      instructions: Please refresh the page and try again.
+      no_token_received: Did not receive token back from server.
+      something_happened: Something happened.
