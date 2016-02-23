@@ -3,3 +3,20 @@ zh:
     widget:
       sign_in_up: 登录/注册
       sign_out: 登出
+    noscript:
+      title: 装载登录页面遇到一个问题。
+      enable_javascript: 为了登录请允许JavaScript运行。
+      description_html: |-
+        <p>请检查浏览器设置中可能的拦截，做必要修改后请再次尝试。有问题的话请随时与<a href="mailto:accounts@oreilly.com">accounts@oreilly.com</a>联系。</p>
+        <h2>JavaScript</h2>
+        <p>如果你使用了类似NoScript或Ghostery的JavaScript拦截插件，则需要允许来自下面网址的脚本：</p>
+        <ul><li>oreilly.com</li>
+        <li>oreillystatic.com</li>
+        <li>cloudfront.net</li>
+        <li>rpxnow.com</li></ul>
+        <p>为达到最好的用户体验还需要允许来自下面这些网址的脚本：</p>
+        <ul><li>janrainsso.com</li></ul>
+        <h2>Private browsing and local storage无痕浏览和本地存储</h2>
+        <p>如果你使用incognito或无痕浏览，Chrome和Firefox浏览器没问题。我们的登录使用本地存储，一些特定浏览器比如Safari在无痕浏览时会拦截本地存储。</p>
+      widget_loading: 装载登录页面......
+      retrieve_user_data: 我们正在取得你的用户数据，请稍等。

@@ -2,28 +2,18 @@
 
 <noscript>
   <div id="widget_status">
-    <h1>There was a problem loading the login page.</h1>
-    <p>Please enable JavaScript to sign in.</p>
+    <h1><%= t '.title' %></h1>
+    <p><%= t '.enable_javascript' %></p>
   </div>
 </noscript>
 
 <div id="widget_status" style="display:none">
-  <h1>There was a problem loading the login page.</h1>
-  <p>Please check your browser settings for these possible blockers, and try again once you've made any necessary changes. Feel free to email <a href="mailto:accounts@oreilly.com">accounts@oreilly.com</a> if you have questions.</p>
-  <h2>JavaScript</h2>
-  <p>If you are blocking JavaScript with a plugin like NoScript or Ghostery, you'll need to allow JavaScript from:</p>
-  <ul><li>oreilly.com</li>
-  <li>oreillystatic.com</li>
-  <li>cloudfront.net</li>
-  <li>rpxnow.com</li></ul>
-  <p>For the best experience across our sites please also enable:</p>
-  <ul><li>janrainsso.com</li></ul>
-  <h2>Private browsing and local storage</h2>
-  <p>If you prefer to use incognito or private browsing, Chrome or Firefox will work. Our login requires local storage, and some browsers, particularly Safari, block it while private browsing.</p>
+  <h2><%= t '.title' %></h2>
+  <%= t '.description_html' %>
 </div>
 
 <div id="widget_loading" style="display:none">
-  <div class="loading_msg">Loading login...</div>
+  <div class="loading_msg"><%= t '.widget_loading' %></div>
 </div>
 
 <script>
@@ -57,5 +47,9 @@
 </script>
 
 <div id="loading" style="display:none">
-  <div id="captureRetrievingUserDataBuiltIn" class="janrain-capture-ui capture-ui-content capture_screen_container"><div class="capture_retrieving">Please wait while we retrieve your user data.</div></div>
+  <div id="captureRetrievingUserDataBuiltIn"
+    class="janrain-capture-ui capture-ui-content capture_screen_container"><div class="capture_retrieving">
+      <%= t '.retrieve_user_data' %>
+    </div>
+  </div>
 </div>

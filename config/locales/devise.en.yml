@@ -3,3 +3,22 @@ en:
     widget:
       sign_in_up: Sign In/Sign Up
       sign_out: Sign Out
+    noscript:
+      title: There was a problem loading the login page.
+      enable_javascript: Please enable JavaScript to sign in.
+      description_html: |-
+        <p>Please check your browser settings for these possible blockers, and try again once you've made any necessary changes.
+        Feel free to email <a href="mailto:accounts@oreilly.com">accounts@oreilly.com</a> if you have questions.</p>
+        <h2>JavaScript</h2>
+        <p>If you are blocking JavaScript with a plugin like NoScript or Ghostery, you'll need to allow JavaScript from:</p>
+        <ul><li>oreilly.com</li>
+        <li>oreillystatic.com</li>
+        <li>cloudfront.net</li>
+        <li>rpxnow.com</li></ul>
+        <p>For the best experience across our sites please also enable:</p>
+        <ul><li>janrainsso.com</li></ul>
+        <h2>Private browsing and local storage</h2>
+        <p>If you prefer to use incognito or private browsing, Chrome or Firefox will work. Our login requires local storage,
+        and some browsers, particularly Safari, block it while private browsing.</p>
+      widget_loading: Loading login...
+      retrieve_user_data: Please wait while we retrieve your user data.
