@@ -260,6 +260,11 @@ Devise.setup do |config|
 end
 ```
 
+If your app is internationalized and you want different Janrain login
+widgets per-locale (as well as per-environment), you should instead
+override `janrain_widget_url` in `config/locales/devise.*.yml` in your
+application.
+
 `janrain_css_url` and `janrain_mobile_css_url` can accept multiple URLs;
 just separate them by a space within the same string. (For example,
 `'//mydomain.com/style1.css //mydomain.com/style2.css`). This makes it

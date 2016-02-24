@@ -1,4 +1,7 @@
 en:
+  devise:
+    janrain_widget_url:
+      '//cdn.oreillystatic.com/members/js/widgets/login-widget.min.js'
   capturable:
     widget:
       sign_in_up: Sign In/Sign Up

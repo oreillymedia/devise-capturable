@@ -1,4 +1,7 @@
 zh:
+  devise:
+    janrain_widget_url:
+      '//cdn.oreillystatic.com/members/js/widgets/login-widget.zh.min.js'
   capturable:
     widget:
       sign_in_up: 登录/注册
