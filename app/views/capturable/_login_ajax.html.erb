@@ -21,17 +21,17 @@
             window.location.href = results.redirect_url;
           }
         } else {
-          displayError('Did not receive token back from server.');
+          displayError('<%= t '.no_token_received' %>');
         }
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
-        displayError('An error occurred while logging in.');
+        displayError('<%= t '.error' %>');
       }
     });
   }
 
   function displayMessage(message) {
-    message = message || 'Something happened.';
+    message = message || '<%= t '.something_happened' %>';
     message += ' <a href="#" id="janrain_modal_closebutton" ' +
                'class="janrain_modal_closebutton" ' +
                'style="position: absolute; cursor: pointer; ' +
@@ -50,8 +50,8 @@
   }
 
   function displayError(error) {
-    error = error || 'An error occurred while logging in.';
-    error += ' Please refresh the page and try again.';
+    error = error || '<%= t '.error' %>';
+    error += ' <%= t '.instructions' %>';
     displayMessage(error);
   }
 </script>

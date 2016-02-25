@@ -28,6 +28,6 @@ module CapturableHelper
 
   def janrain_widget_url
     Devise.janrain_widget_url ||
-      '//cdn.oreillystatic.com/members/js/widgets/login-widget.min.js'
+      I18n.t('devise.janrain_widget_url')
   end
 end
