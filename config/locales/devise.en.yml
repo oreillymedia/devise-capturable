@@ -10,9 +10,10 @@ en:
     noscript:
       title: There was a problem loading the login page.
       enable_javascript: Please enable JavaScript to sign in.
+      contact_email: accounts@oreilly.com
       description_html: |-
         <p>Please check your browser settings for these possible blockers, and try again once you've made any necessary changes.
-        Feel free to email <a href="mailto:accounts@oreilly.com">accounts@oreilly.com</a> if you have questions.</p>
+        Feel free to email <a href="mailto:%{contact_email}">%{contact_email}</a> if you have questions.</p>
         <h2>JavaScript</h2>
         <p>If you are blocking JavaScript with a plugin like NoScript or Ghostery, you'll need to allow JavaScript from:</p>
         <ul><li>oreilly.com</li>

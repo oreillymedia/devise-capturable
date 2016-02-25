@@ -10,8 +10,9 @@ zh:
     noscript:
       title: 装载登录页面遇到一个问题。
       enable_javascript: 为了登录请允许JavaScript运行。
+      contact_email: accounts@oreilly.com
       description_html: |-
-        <p>请检查浏览器设置中可能的拦截，做必要修改后请再次尝试。有问题的话请随时与<a href="mailto:accounts@oreilly.com">accounts@oreilly.com</a>联系。</p>
+        <p>请检查浏览器设置中可能的拦截，做必要修改后请再次尝试。有问题的话请随时与<a href="mailto:%{contact_email}">%{contact_email}</a>联系。</p>
         <h2>JavaScript</h2>
         <p>如果你使用了类似NoScript或Ghostery的JavaScript拦截插件，则需要允许来自下面网址的脚本：</p>
         <ul><li>oreilly.com</li>
