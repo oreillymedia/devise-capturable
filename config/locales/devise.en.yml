@@ -4,6 +4,7 @@ en:
       '//cdn.oreillystatic.com/members/js/widgets/login-widget.min.js'
   capturable:
     widget:
+      greeting: "Hi "
       sign_in_up: Sign In/Sign Up
       sign_out: Sign Out
     noscript:

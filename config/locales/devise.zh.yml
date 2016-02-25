@@ -4,6 +4,7 @@ zh:
       '//cdn.oreillystatic.com/members/js/widgets/login-widget.zh.min.js'
   capturable:
     widget:
+      greeting: 你好
       sign_in_up: 登录/注册
       sign_out: 登出
     noscript:

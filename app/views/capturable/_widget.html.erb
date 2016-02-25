@@ -23,7 +23,7 @@
         var span = document.getElementById('traditionalWelcomeName');
         var name = janrain.capture.ui.getReturnExperienceData('displayName');
         if (span && name) {
-          span.innerHTML = "Hi " + name;
+          span.innerHTML = "<%= t '.greeting' %>" + name;
         }
       }
     });
