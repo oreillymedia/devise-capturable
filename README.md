@@ -113,6 +113,11 @@ jQuery(document).ready(function() {
 
 If your Devise model is named something besides User, update the values for `user_federate_xd_receiver_url` and `user_federate_logout_url` accordingly. (e.g., `admin_federate_logout_url`). If you're not sure, check your available routes via `rake routes`.
 
+If your application is internationalized, you can set the language of the Janrain widget with the following setting. You'll add a `language` key to whichever locale files are appropriate for your application. For example, if the widget was available to you in English and Simplified Chinese, the value would either be 'en' or 'zh-Hans'.
+
+```window.janrain.settings.language = "<%= t '.language' %>";
+```
+
 #### Add logout partial
 
 Devise::Capturable includes a logout partial containing just enough JavaScript to handle Janrain/Federate logout and an HTML link to initiate it. To include it, just render the partial:
